@@ -78,14 +78,14 @@ const FADE = 1500
 const TOTAL = timeline.reduce((s, t) => s + (t.secs || 8), 0)
 const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`
 
-function Creditos() {
+function Creditos({ playing }) {
   const [fase, setFase] = useState(0)
   useEffect(() => {
+    if (!playing) return
     setFase(0)
-    const t1 = setTimeout(() => setFase(0), 100)
     const t2 = setTimeout(() => setFase(1), 10000)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [])
+    return () => { clearTimeout(t2) }
+  }, [playing])
   return (
     <div key="cred" className="title-screen credits">
       {fase === 0 ? (
@@ -182,26 +182,25 @@ function Montaje() {
     }
   }
 
-  // Fondo 16% solo en media (no en título ni créditos). Narración 100% en media + créditos.
-  // Mute general al final a la derecha bloquea ambos.
+  // Fondo 16% solo en media. Narración 100% solo en media. Créditos en silencio.
+  // Sin loop: una sola vez.
   useEffect(() => {
     const a = audioRef.current
     const n = narracionRef.current
-    if (a) { a.volume = 0.16; a.muted = mutedAll }
-    if (n) { n.volume = 1.0; n.muted = mutedAll }
+    if (a) { a.volume = 0.16; a.muted = mutedAll; a.loop = false }
+    if (n) { n.volume = 1.0; n.muted = mutedAll; n.loop = false }
     if (!playing) { a?.pause(); n?.pause(); return }
-    if (index === 0) {
-      a?.pause(); if (a) a.currentTime = 0
-      n?.pause(); if (n) n.currentTime = 0
-      return
-    }
-    if (isCreditos) {
+    if (index === 0 || isCreditos) {
       a?.pause()
-      n?.play().catch(() => {})
+      n?.pause()
+      if (index === 0) { if (a) a.currentTime = 0; if (n) n.currentTime = 0 }
       return
     }
-    a?.play().catch(() => {})
-    n?.play().catch(() => {})
+    // Solo una vez: no re-disparar si ya terminó
+    if (a && (a.ended || (a.duration && a.currentTime >= a.duration - 0.3))) { /* no replay */ }
+    else a?.play().catch(() => {})
+    if (n && (n.ended || (n.duration && n.currentTime >= n.duration - 0.3))) { /* no replay */ }
+    else n?.play().catch(() => {})
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, playing, mutedAll])
 
@@ -223,11 +222,11 @@ function Montaje() {
             <video key={index} ref={videoRef} className="piece-in full" src={current.src} muted playsInline preload="metadata" />
           )
         ) : current.tipo === 'titulo' ? (
-          <div key="titulo" className="title-screen long">
+          <div key={`titulo-${playing ? 'play' : 'idle'}`} className={`title-screen long ${playing ? 'anim' : 'static'}`}>
             <h1>{TITULO}</h1>
           </div>
         ) : current.tipo === 'creditos' ? (
-          <Creditos />
+          <Creditos playing={playing} />
         ) : (
           <img key={index} className="piece-in full" src={current.src} alt="" />
         )}
@@ -263,6 +262,7 @@ function App() {
         <p>CINE Y REVOLUCION - Victor Andres Verano Ramirez</p>
         <p>Estudiantes: Freddy Vladimir Morillo Benavides, Guillermo Javier Vallejo Portilla y Carlos Alberto Rivera Canacuan</p>
         <p>Institución Educativa Técnica Agropecuaria Indígena de Panán Cumbal Nariño</p>
+        <p><a className="btn" href="/Documento-Entrega.pdf" download>Descargar documento PDF</a></p>
         <p className="sub-pre">Subtítulos de la narración:</p>
         <pre>{SUBTITULOS}</pre>
       </section>
