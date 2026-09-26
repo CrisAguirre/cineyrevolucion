@@ -91,8 +91,8 @@ function Creditos({ playing }) {
     <div key="cred" className="title-screen credits">
       {fase === 0 ? (
         <div className="cred-fase piece-in">
-          <p>Actividad Corto Metraje Innovador</p>
-          <p>CINE Y REVOLUCION - Victor Andres Verano Ramirez</p>
+        <p className="act">Actividad Corto Metraje Innovador</p>
+        <p className="act">CINE Y REVOLUCION - Victor Andres Verano Ramirez</p>
         </div>
       ) : (
         <div className="cred-fase piece-in">

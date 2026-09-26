@@ -2,7 +2,7 @@
 /* Fondo Thinking Dots: matriz de puntos respirando sobre la app */
 .thinking-dots{position:fixed;inset:0;z-index:-1;pointer-events:none}
 .hero-doc h1{font-size:42px;line-height:1.1;margin:12px 0}
-.kicker{opacity:1;text-transform:uppercase;letter-spacing:.08em;font-size:15px;text-align:center;color:#fff}
+.kicker{opacity:1;text-transform:uppercase;letter-spacing:.08em;font-size:15px;font-weight:700;text-align:center;color:#fff}
 .sub{font-size:18px;max-width:70ch}
 .rb-fade{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
 .rb-fade.on{opacity:1;transform:none}
@@ -43,6 +43,7 @@
 .descripcion{border:1px solid var(--border);border-radius:12px;padding:24px 16px;text-align:left;background:#0b0b0e;color:#f3f4f6}
 .descripcion h2{color:#fff;font-size:15px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin:0 0 8px}
 .descripcion pre{white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:15px;line-height:1.6;margin:12px 0 0;text-align:center;color:#e5e7eb}
-.sub-pre{opacity:.7;font-size:14px;color:#d1d5db;text-align:center}
+.sub-pre{opacity:.7;font-size:15px;color:#d1d5db;text-align:center;letter-spacing:.08em;text-transform:uppercase;margin:32px 0 0}
 .descripcion p{color:#e5e7eb}
+.descripcion p.act{margin-bottom:16px}
 footer{opacity:.6;font-size:14px;border-top:1px solid var(--border);padding-top:16px}
