@@ -35,7 +35,8 @@
 .thumbs{display:flex;gap:6px;flex-wrap:wrap}
 .thumbs button{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:transparent;cursor:pointer;color:inherit}
 .thumbs button.active{background:var(--text-h);color:var(--bg)}
-.stage .title-screen.credits{padding:5%}
+.stage .title-screen.credits{padding:0}
+.stage .title-screen.credits .cred-fase{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:88%;margin:0;padding:0;text-align:center}
 .stage:fullscreen{border-radius:0}
 .stage:fullscreen video.full,.stage:fullscreen img.full{object-fit:contain}
 .stage:fullscreen .vwrap .fg{object-fit:contain}

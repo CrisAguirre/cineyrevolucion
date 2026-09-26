@@ -278,8 +278,8 @@ function App() {
       <Montaje />
       <section className="descripcion">
         <h2>Descripción</h2>
-        <p>Actividad Corto Metraje Innovador</p>
-        <p>CINE Y REVOLUCION - Victor Andres Verano Ramirez</p>
+        <p className="act">Actividad Corto Metraje Innovador</p>
+        <p className="act">CINE Y REVOLUCION - Victor Andres Verano Ramirez</p>
         <p>Estudiantes: Freddy Vladimir Morillo Benavides, Guillermo Javier Vallejo Portilla y Carlos Alberto Rivera Canacuan</p>
         <p>Institución Educativa Técnica Agropecuaria Indígena de Panán Cumbal Nariño</p>
         <p className="sub-pre">Subtítulos de la narración:</p>
