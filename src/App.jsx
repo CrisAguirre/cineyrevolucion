@@ -16,6 +16,7 @@ import video6 from './assets/media/6.mp4'
 import video7 from './assets/media/7.mp4'
 import audioOpus from './assets/media/audio.opus'
 import libretoMp3 from './assets/media/libreto.mp3'
+import ThinkingDots from './ThinkingDots.jsx'
 
 const TITULO = 'La docencia como vocación para despertar la conciencia social en los estudiantes'
 
@@ -272,6 +273,7 @@ function Montaje() {
 function App() {
   return (
     <main className="doc">
+      <ThinkingDots color="#38bdf8" accentColor="#7dd3fc" />
       <p className="kicker">Corto Documental - Cine y Revolucion</p>
       <Montaje />
       <section className="descripcion">
@@ -280,7 +282,6 @@ function App() {
         <p>CINE Y REVOLUCION - Victor Andres Verano Ramirez</p>
         <p>Estudiantes: Freddy Vladimir Morillo Benavides, Guillermo Javier Vallejo Portilla y Carlos Alberto Rivera Canacuan</p>
         <p>Institución Educativa Técnica Agropecuaria Indígena de Panán Cumbal Nariño</p>
-        <p><a className="btn" href="/Documento-Entrega.pdf" download>Descargar documento PDF</a> <a className="btn ghost" href="/Documento-Entrega.docx" download>Descargar Word editable</a></p>
         <p className="sub-pre">Subtítulos de la narración:</p>
         <pre>{SUBTITULOS}</pre>
       </section>

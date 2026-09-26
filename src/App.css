@@ -1,6 +1,8 @@
-.doc{max-width:1100px;margin:0 auto;padding:32px 20px;display:flex;flex-direction:column;gap:32px;text-align:left;overflow-x:clip}
+.doc{max-width:1100px;margin:0 auto;padding:32px 20px;display:flex;flex-direction:column;gap:32px;text-align:left;overflow-x:clip;position:relative;isolation:isolate}
+/* Fondo Thinking Dots: matriz de puntos respirando sobre la app */
+.thinking-dots{position:fixed;inset:0;z-index:-1;pointer-events:none}
 .hero-doc h1{font-size:42px;line-height:1.1;margin:12px 0}
-.kicker{opacity:.7;text-transform:uppercase;letter-spacing:.08em;font-size:13px;text-align:center}
+.kicker{opacity:1;text-transform:uppercase;letter-spacing:.08em;font-size:15px;text-align:center;color:#fff}
 .sub{font-size:18px;max-width:70ch}
 .rb-fade{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
 .rb-fade.on{opacity:1;transform:none}
@@ -38,7 +40,9 @@
 .stage:fullscreen video.full,.stage:fullscreen img.full{object-fit:contain}
 .stage:fullscreen .vwrap .fg{object-fit:contain}
 .stage .title-screen.credits .cred-fase p{color:#fff;font-size:clamp(16px,2.6vw,26px);line-height:1.4;margin:8px 0}
-.descripcion{border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
-.descripcion pre{white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:15px;line-height:1.6;margin:12px 0 0;text-align:center}
-.sub-pre{opacity:.7;font-size:14px}
+.descripcion{border:1px solid var(--border);border-radius:12px;padding:24px 16px;text-align:left;background:#0b0b0e;color:#f3f4f6}
+.descripcion h2{color:#fff;font-size:15px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin:0 0 8px}
+.descripcion pre{white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:15px;line-height:1.6;margin:12px 0 0;text-align:center;color:#e5e7eb}
+.sub-pre{opacity:.7;font-size:14px;color:#d1d5db;text-align:center}
+.descripcion p{color:#e5e7eb}
 footer{opacity:.6;font-size:14px;border-top:1px solid var(--border);padding-top:16px}
