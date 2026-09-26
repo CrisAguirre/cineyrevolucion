@@ -109,9 +109,11 @@ function Montaje() {
   const [fadeBlack, setFadeBlack] = useState(false)
   const [mutedAll, setMutedAll] = useState(false)
   const [elapsed, setElapsed] = useState(0)
+  const [isFull, setIsFull] = useState(false)
   const videoRef = useRef(null)
   const audioRef = useRef(null)
   const narracionRef = useRef(null)
+  const stageRef = useRef(null)
   const seekVideoOffset = useRef(0)
   const current = timeline[index]
   const isCreditos = current.tipo === 'creditos'
@@ -209,9 +211,22 @@ function Montaje() {
     setPlaying((p) => !p)
   }
 
+  const toggleFull = async () => {
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen()
+      else await stageRef.current?.requestFullscreen()
+    } catch { /* navegador no lo permite */ }
+  }
+
+  useEffect(() => {
+    const fn = () => setIsFull(!!document.fullscreenElement)
+    document.addEventListener('fullscreenchange', fn)
+    return () => document.removeEventListener('fullscreenchange', fn)
+  }, [])
+
   return (
     <section className="montaje">
-      <div className="stage">
+      <div className="stage" ref={stageRef}>
         {current.tipo === 'video' ? (
           current.vertical ? (
             <div key={index} className="vwrap piece-in">
@@ -223,7 +238,7 @@ function Montaje() {
           )
         ) : current.tipo === 'titulo' ? (
           <div key={`titulo-${playing ? 'play' : 'idle'}`} className={`title-screen long ${playing ? 'anim' : 'static'}`}>
-            <h1>{TITULO}</h1>
+            <h1><span>La docencia como vocación</span><br /><span>para despertar la conciencia social en los estudiantes</span></h1>
           </div>
         ) : current.tipo === 'creditos' ? (
           <Creditos playing={playing} />
@@ -246,6 +261,9 @@ function Montaje() {
         <button className="btn ghost right" onClick={() => setMutedAll((m) => !m)}>
           {mutedAll ? 'Activar audio' : 'Silenciar'}
         </button>
+        <button className="btn ghost" onClick={toggleFull}>
+          {isFull ? 'Salir de pantalla' : 'Pantalla completa'}
+        </button>
       </div>
     </section>
   )
@@ -262,7 +280,7 @@ function App() {
         <p>CINE Y REVOLUCION - Victor Andres Verano Ramirez</p>
         <p>Estudiantes: Freddy Vladimir Morillo Benavides, Guillermo Javier Vallejo Portilla y Carlos Alberto Rivera Canacuan</p>
         <p>Institución Educativa Técnica Agropecuaria Indígena de Panán Cumbal Nariño</p>
-        <p><a className="btn" href="/Documento-Entrega.pdf" download>Descargar documento PDF</a></p>
+        <p><a className="btn" href="/Documento-Entrega.pdf" download>Descargar documento PDF</a> <a className="btn ghost" href="/Documento-Entrega.docx" download>Descargar Word editable</a></p>
         <p className="sub-pre">Subtítulos de la narración:</p>
         <pre>{SUBTITULOS}</pre>
       </section>

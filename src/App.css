@@ -12,12 +12,11 @@
 .stage .vwrap .bg{position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;filter:blur(24px) brightness(.55);transform:scale(1.05)}
 .stage .vwrap .fg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 @keyframes piecein{from{opacity:0}to{opacity:1}}
-.stage .title-screen{background:#000;display:flex;align-items:center;justify-content:center;padding:6%;text-align:center}
-.stage .title-screen h1{color:#fff;font-size:clamp(22px,4vw,44px);line-height:1.2;margin:0 auto;width:100%;max-width:900px;text-align:center;opacity:1}
-.stage .title-screen.static h1{opacity:1;animation:none}
+.stage .title-screen{background:#000;position:absolute;inset:0;display:block;padding:0;text-align:center}
+.stage .title-screen h1{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:88%;max-width:36ch;margin:0;padding:0;color:#fff;font-size:clamp(20px,3.4vw,38px);line-height:1.35;letter-spacing:0;text-indent:0;text-align:center;opacity:1}
+.stage .title-screen h1 span{display:inline}
 .stage .title-screen.anim h1{opacity:0;animation:titlefade10 10s ease forwards}
-.stage .title-screen.long h1{margin:0 auto}
-@keyframes titlefade10{0%{opacity:0;transform:translateY(14px)}18%{opacity:1;transform:none}82%{opacity:1}100%{opacity:0}}
+@keyframes titlefade10{0%{opacity:0}18%{opacity:1}82%{opacity:1}100%{opacity:0}}
 .stage .title-screen h2{color:#fff;font-size:clamp(18px,3vw,30px);margin:0;animation:piecein 1.5s ease both}
 .stage .black{position:absolute;inset:0;background:#000;opacity:0;transition:opacity 1.5s ease;pointer-events:none}
 .stage .black.slow{transition:opacity 1.5s ease}
@@ -35,6 +34,9 @@
 .thumbs button{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:transparent;cursor:pointer;color:inherit}
 .thumbs button.active{background:var(--text-h);color:var(--bg)}
 .stage .title-screen.credits{padding:5%}
+.stage:fullscreen{border-radius:0}
+.stage:fullscreen video.full,.stage:fullscreen img.full{object-fit:contain}
+.stage:fullscreen .vwrap .fg{object-fit:contain}
 .stage .title-screen.credits .cred-fase p{color:#fff;font-size:clamp(16px,2.6vw,26px);line-height:1.4;margin:8px 0}
 .descripcion{border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
 .descripcion pre{white-space:pre-wrap;font-family:inherit;font-size:15px;line-height:1.6;margin:12px 0 0;text-align:center}
